@@ -79,34 +79,31 @@ Route::middleware(['auth','role:admin'])->group(function () {
     });
 
     //Backend Blog Route
-    Route::controller(BlogController::class)->group(function(){
-        //Backend Blog Route
-        Route::get('/backend/blogs', 'index')->name('blogs');
-        Route::get('/backend/posts/detail/{id}', 'detail')->name('posts.detail');
-        Route::get('/backend/blogs/active', 'ActivePost')->name('blogs.active');
-        Route::get('/backend/blogs/inactive', 'InactivePost')->name('blogs.inactive');
-        Route::get('/backend/blogs/inactive/{id}' ,  'PostInactive')->name('post.inactive');
-        Route::get('/backend/blogs/active/{id}' ,  'PostActive')->name('post.active');
-        Route::get('/backend/posts/create', 'create')->name('posts.create');
-        Route::post('/backend/posts/store', 'store')->name('posts.store');
-        Route::get('/backend/posts/edit/{id}', 'edit')->name('posts.edit');
-        Route::post('/backend/posts/update', 'update')->name('posts.update');
-        Route::get('/backend/posts/delete/{id}' ,  'destroy')->name('posts.delete');
+    Route::get('/backend/blogs',[BlogController::class, 'index'])->name('blogs');
+    Route::get('/backend/posts/detail/{id}',[BlogController::class, 'detail'])->name('posts.detail');
+    Route::get('/backend/blogs/active',[BlogController::class, 'ActivePost'])->name('blogs.active');
+    Route::get('/backend/blogs/inactive',[BlogController::class, 'InactivePost'])->name('blogs.inactive');
+    Route::get('/backend/blogs/inactive/{id}' , [BlogController::class, 'PostInactive'])->name('post.inactive');
+    Route::get('/backend/blogs/active/{id}' , [BlogController::class, 'PostActive'])->name('post.active');
+    Route::get('/backend/posts/create',[BlogController::class, 'create'])->name('posts.create');
+    Route::post('/backend/posts/store',[BlogController::class, 'store'])->name('posts.store');
+    Route::get('/backend/posts/edit/{id}',[BlogController::class, 'edit'])->name('posts.edit');
+    Route::post('/backend/posts/update',[BlogController::class, 'update'])->name('posts.update');
+    Route::get('/backend/posts/delete/{id}' , [BlogController::class, 'destroy'])->name('posts.delete');
 
-        //Backend Categorie for Post
-        Route::get('/backend/posts/categories', 'PostCategoryIndex')->name('posts.categories');
-        Route::post('/backend/posts/categories/store', 'PostCategoryStore')->name('posts.categories.store');
-        Route::get('/backend/posts/categories/edit/{id}', 'PostCategoryEdit')->name('posts.categories.edit');
-        Route::post('/backend/posts/categories/update', 'PostCategoryUpdate')->name('posts.categories.update');
-        Route::get('/backend/post/categories/delete/{id}' ,  'PostCategoryDestroy')->name('posts.categories.delete');
+    //Backend Categorie for Post
+    Route::get('/backend/posts/categories',[BlogController::class, 'PostCategoryIndex'])->name('posts.categories');
+    Route::post('/backend/posts/categories/store',[BlogController::class, 'PostCategoryStore'])->name('posts.categories.store');
+    Route::get('/backend/posts/categories/edit/{id}',[BlogController::class, 'PostCategoryEdit'])->name('posts.categories.edit');
+    Route::post('/backend/posts/categories/update',[BlogController::class, 'PostCategoryUpdate'])->name('posts.categories.update');
+    Route::get('/backend/post/categories/delete/{id}' , [BlogController::class, 'PostCategoryDestroy'])->name('posts.categories.delete');
 
-        //Backend Tag for Post
-        Route::get('/backend/posts/tags', 'PostTagIndex')->name('posts.tags');
-        Route::post('/backend/posts/tags/store', 'PostTagStore')->name('posts.tags.store');
-        Route::get('/backend/posts/tags/edit/{id}', 'PostTagEdit')->name('posts.tags.edit');
-        Route::post('/backend/posts/tags/update', 'PostTagUpdate')->name('posts.tags.update');
-        Route::get('/backend/post/tags/delete/{id}' ,  'PostTagDestroy')->name('posts.tags.delete');
-    });
+    //Backend Tag for Post
+    Route::get('/backend/posts/tags',[BlogController::class, 'PostTagIndex'])->name('posts.tags');
+    Route::post('/backend/posts/tags/store',[BlogController::class, 'PostTagStore'])->name('posts.tags.store');
+    Route::get('/backend/posts/tags/edit/{id}',[BlogController::class, 'PostTagEdit'])->name('posts.tags.edit');
+    Route::post('/backend/posts/tags/update',[BlogController::class, 'PostTagUpdate'])->name('posts.tags.update');
+    Route::get('/backend/post/tags/delete/{id}' , [BlogController::class, 'PostTagDestroy'])->name('posts.tags.delete');
 
     Route::get('/tag-names',function(){
         $tag=PostTags::all()->pluck('name')->toArray();
