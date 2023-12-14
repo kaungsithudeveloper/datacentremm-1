@@ -159,7 +159,7 @@
                                                                             <td>
                                                                                 <div class="g-2 text-center">
                                                                                     @if (Auth::user()->can('blog.edit'))
-                                                                                        <a href="{{ route('posts.edit', $post->id) }}"
+                                                                                        <a href=""
                                                                                             class="btn text-primary btn-sm"
                                                                                             data-bs-toggle="tooltip"
                                                                                             data-bs-original-title="Edit">
@@ -308,7 +308,7 @@
                                                                             <td>
                                                                                 <div class="g-2 text-center">
                                                                                     @if (Auth::user()->can('blog.edit'))
-                                                                                        <a href="{{ route('posts.edit', $post->id) }}"
+                                                                                        <a href=""
                                                                                             class="btn text-primary btn-sm"
                                                                                             data-bs-toggle="tooltip"
                                                                                             data-bs-original-title="Edit">
@@ -457,7 +457,7 @@
                                                                             <td>
                                                                                 <div class="g-2 text-center">
                                                                                     @if (Auth::user()->can('blog.edit'))
-                                                                                        <a href="{{ route('posts.edit', $post->id) }}"
+                                                                                        <a href=""
                                                                                             class="btn text-primary btn-sm"
                                                                                             data-bs-toggle="tooltip"
                                                                                             data-bs-original-title="Edit">
