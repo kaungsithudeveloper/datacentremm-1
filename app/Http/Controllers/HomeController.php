@@ -72,4 +72,5 @@ class HomeController extends Controller
         $posts = Blog::where('status', 1)->latest()->take(6)->get();
         return view('contact_us',compact('genres','posts'));
     }
+
 }

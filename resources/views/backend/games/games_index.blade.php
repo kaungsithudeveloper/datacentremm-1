@@ -10,7 +10,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Games</h1>
+                    <h1 class="page-title">
+                        <a href="{{ route('games.create') }}" class="btn btn-primary">
+                            Add New Games
+                        </a>
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
@@ -24,7 +28,10 @@
                     <div class="col-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title mb-0">Games</h3>
+                                <h3 class="card-title mb-0">
+                                    Games
+
+                                </h3>
                             </div>
                             <div class="card-body pt-4">
                                 <div class="grid-margin">

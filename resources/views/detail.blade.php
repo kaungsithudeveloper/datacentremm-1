@@ -116,17 +116,34 @@
 
 
                         </div>
-                        <div class="font-size-sm text-white">
-                            Runtime : {{ $detail->runtime }}
 
-                        </div>
-                        <div class="font-size-sm text-white">
-                            Video Format : {{ $detail->video_format }}
-                        </div>
+                        @if ($detail->type == 'serie')
+                            <p style="font-size: 14px" class="text-white mt-2">
+                                {!! nl2br(e($detail->short_descp)) !!}
+                            </p>
+                        @elseif ($detail->type == 'game')
+                            <p style="font-size: 14px" class="text-white mt-2">
+                                {!! nl2br(e($detail->short_descp)) !!}
+                            </p>
+                        @endif
 
-                        <div class="font-size-sm text-white">
-                            Release Date : {{ $detail->release_date }}
-                        </div>
+                        @if ($detail->type == 'movie')
+                            <div class="font-size-sm text-white">
+                                Runtime : {{ $detail->runtime }}
+
+                            </div>
+                            <div class="font-size-sm text-white">
+                                Video Format : {{ $detail->video_format }}
+                            </div>
+                        @elseif ($detail->type == 'serie')
+                            <div class="font-size-sm text-white">
+                                Runtime : {{ $detail->runtime }}
+
+                            </div>
+                            <div class="font-size-sm text-white">
+                                Video Format : {{ $detail->video_format }}
+                            </div>
+                        @endif
 
                         <br class="">
 
@@ -147,56 +164,148 @@
                     </div>
                 </div>
                 <!-- Nav tabs-->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link p-4 active" href="#details" data-toggle="tab" role="tab">
-                            Description
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link p-4" href="#reviews" data-toggle="tab" role="tab">
-                            Casts
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content pt-2">
-                    <!-- Movie details tab-->
-                    <div class="tab-pane fade show active" id="details" role="tabpanel">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <p>
-                                <div id="movie_des">
-                                    {!! html_entity_decode($detail->description) !!}
+                @if ($detail->type == 'movie')
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link p-4 active" href="#details" data-toggle="tab" role="tab">
+                                Description
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-4" href="#reviews" data-toggle="tab" role="tab">
+                                Casts
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2">
+                        <!-- Movie details tab-->
+                        <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                    <div id="movie_des">
+                                        {!! html_entity_decode($detail->description) !!}
+                                    </div>
+                                    </p>
                                 </div>
-                                </p>
+                            </div>
+                        </div>
+                        <!-- Cast tab-->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="row pt-4">
+                                @foreach ($casts as $cast)
+                                    <div class="col-md-2 col-4 mb-1">
+                                        <div class="card" id="custom-card">
+                                            <a class="blog-entry-thumb gallery-item"
+                                                href="{{ route('dc.casts.detail', $cast->id) }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
+                                                    alt="Post">
+                                            </a>
+                                            <div class="card-body">
+                                                <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
+                                                    <div class="movie-title">
+                                                        {{ $cast->name }}
+                                                    </div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                    <!-- Cast tab-->
-                    <div class="tab-pane fade" id="reviews" role="tabpanel">
-                        <div class="row pt-4">
-                            @foreach ($casts as $cast)
-                                <div class="col-md-2 col-4 mb-1">
-                                    <div class="card" id="custom-card">
-                                        <a class="blog-entry-thumb gallery-item"
-                                            href="{{ route('dc.casts.detail', $cast->id) }}">
-                                            <img class="card-img-top"
-                                                src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
-                                                alt="Post">
-                                        </a>
-                                        <div class="card-body">
-                                            <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
-                                                <div class="movie-title">
-                                                    {{ $cast->name }}
-                                                </div>
-                                            </h6>
+                @elseif ($detail->type == 'serie')
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link p-4 active" href="#details" data-toggle="tab" role="tab">
+                                Description
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-4" href="#reviews" data-toggle="tab" role="tab">
+                                Casts
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2">
+                        <!-- Movie details tab-->
+                        <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                    <div id="movie_des">
+                                        {!! html_entity_decode($detail->description) !!}
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cast tab-->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="row pt-4">
+                                @foreach ($casts as $cast)
+                                    <div class="col-md-2 col-4 mb-1">
+                                        <div class="card" id="custom-card">
+                                            <a class="blog-entry-thumb gallery-item"
+                                                href="{{ route('dc.casts.detail', $cast->id) }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
+                                                    alt="Post">
+                                            </a>
+                                            <div class="card-body">
+                                                <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
+                                                    <div class="movie-title">
+                                                        {{ $cast->name }}
+                                                    </div>
+                                                </h6>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
+                @elseif ($detail->type == 'game')
+                    <div class="tab-content pt-2">
+                        <!-- Movie details tab-->
+                        <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                    <div id="movie_des">
+                                        {!! html_entity_decode($detail->description) !!}
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cast tab-->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="row pt-4">
+                                @foreach ($casts as $cast)
+                                    <div class="col-md-2 col-4 mb-1">
+                                        <div class="card" id="custom-card">
+                                            <a class="blog-entry-thumb gallery-item"
+                                                href="{{ route('dc.casts.detail', $cast->id) }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
+                                                    alt="Post">
+                                            </a>
+                                            <div class="card-body">
+                                                <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
+                                                    <div class="movie-title">
+                                                        {{ $cast->name }}
+                                                    </div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class=" my-lg-3 py-5">
                     <div class="container pt-md-2">
                         <hr class="mt-4 pb-4 mb-3">

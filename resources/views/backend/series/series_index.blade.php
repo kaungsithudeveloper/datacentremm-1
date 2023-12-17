@@ -10,7 +10,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Series</h1>
+                    <h1 class="page-title">
+                        <a href="{{ route('series.create') }}" class="btn btn-primary">
+                            Add New Serie
+                        </a>
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>

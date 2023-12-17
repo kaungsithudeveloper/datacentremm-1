@@ -106,9 +106,14 @@
                                     <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
                                         <a class="dropdown-item text-center" href="{{ route('user.account.page') }}">
                                             {{ Auth::user()->name }}</a>
-                                        <a class="dropdown-item text-center"
-                                            href="{{ route('user.password.page') }}">Update
-                                            Password</a>
+                                        <a class="dropdown-item text-center" href="{{ route('user.password.page') }}">
+                                            Update Password
+                                        </a>
+                                        @if (Auth::check() && Auth::user()->role == 'admin')
+                                            <a class="dropdown-item text-center" href="{{ route('admin.dashboard') }}">
+                                                Admin Dashboard
+                                            </a>
+                                        @endif
                                         <a class="dropdown-item text-center" href="{{ route('user.orders') }}">Order</a>
                                         <div class="dropdown-divider"></div>
                                         <div class="text-center p-1">

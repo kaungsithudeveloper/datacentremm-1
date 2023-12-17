@@ -177,7 +177,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
         Route::post('/backend/movies/store',  'MovieStore')->name('movies.store');
         Route::get('/backend/movies/inactive/{id}' ,  'MovieInactive')->name('movies.inactive');
         Route::get('/backend/movies/active/{id}' ,  'MovieActive')->name('movies.active');
-        Route::get('/backend/posts/edit/{id}', 'MovieEdit')->name('movies.edit');
+        Route::get('/backend/movies/edit/{id}', 'MovieEdit')->name('movies.edit');
         Route::post('/backend/movies/update',  'MovieUpdate')->name('movies.update');
         Route::get('/backend/movies/delete/{id}' ,  'MovieDestroy')->name('movies.delete');
 

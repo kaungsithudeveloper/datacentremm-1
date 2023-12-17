@@ -10,7 +10,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Movie</h1>
+                    <h1 class="page-title">
+                        <a href="{{ route('movies.create') }}" class="btn btn-primary">
+                            Add New Movie
+                        </a>
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
