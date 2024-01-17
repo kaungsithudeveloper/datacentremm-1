@@ -236,15 +236,38 @@
                                 <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown">
                                     PC Games
                                 </a>
-                                <div class="dropdown-menu p-0">
+                                <style>
+                                    .dropdown-menu::-webkit-scrollbar {
+                                        width: 0px;
+                                        visibility: hidden;
+                                    }
+
+                                    .dropdown-menu::-webkit-scrollbar-thumb {
+                                        background-color: #888;
+                                        border-radius: 4px;
+
+                                    }
+
+                                    .dropdown-menu::-webkit-scrollbar-track {
+                                        background-color: #f1f1f1;
+                                    }
+                                </style>
+                                <div class="dropdown-menu p-0" style="max-height: 400px; overflow: auto;">
                                     <div class="d-flex flex-wrap flex-md-nowrap px-2">
                                         <div class="mega-dropdown-column py-4 px-3">
-                                            <div class="widget widget-links mb-3 ">
+                                            <div class="widget widget-links mb-3">
                                                 <ul class="widget-list">
                                                     <li class="widget-list-item">
                                                         <a class="widget-list-link pb-1"
                                                             href="{{ route('dc.games') }}">
                                                             Update PC Games
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="widget-list-item">
+                                                        <a class="widget-list-link pb-1"
+                                                            href="{{ route('dc.games') }}">
+                                                            Small PC Games
                                                         </a>
                                                     </li>
                                                     @php
@@ -255,7 +278,8 @@
                                                     @foreach ($genres as $genre)
                                                         <li class="widget-list-item pb-1">
                                                             <a class="widget-list-link "
-                                                                href="{{ route('dc.games.genres', ['id' => $genre->id]) }}">{{ $genre->name }}
+                                                                href="{{ route('dc.games.genres', ['id' => $genre->id]) }}">
+                                                                {{ $genre->name }}
                                                                 Games
                                                             </a>
                                                         </li>

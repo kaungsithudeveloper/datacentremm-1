@@ -66,10 +66,9 @@
                                     </a>
                                 </li>
                                 <li class="border-bottom mb-0">
-                                    <a class="nav-link-style d-flex align-items-center px-4 py-3"
-                                        href="account-wishlist.html">
+                                    <a class="nav-link-style d-flex align-items-center px-4 py-3">
                                         <i class="czi-heart  mr-2 text-white"> Series</i>
-                                        <span class="font-size-sm  ml-auto text-white">3</span>
+                                        <span class="font-size-sm  ml-auto text-white">{{ $casts->series->count() }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -110,7 +109,7 @@
                                                         <i class="czi-heart"></i>
                                                     </button>
                                                     <a class=" d-block overflow-hidden"
-                                                        href="{{ route('dc.movies.detail', $movie->id) }}">
+                                                        href="{{ route('dc.detail', $movie->id) }}">
                                                         <img src="{{ !empty($movie->photo) ? url('upload/product_images/' . $movie->photo) : url('upload/movie_image.jpg') }}"
                                                             alt="Product">
                                                     </a>
@@ -127,7 +126,7 @@
                                                         </a>
                                                     </div>
 
-                                                    <a href="{{ route('dc.movies.detail', $movie->id) }}">
+                                                    <a href="{{ route('dc.detail', $movie->id) }}">
                                                         <div class="movie-title font-size-sm"
                                                             id="mname_{{ $movie->id }}">
                                                             {{ $movie->title }}

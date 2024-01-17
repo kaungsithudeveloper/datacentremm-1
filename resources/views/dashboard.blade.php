@@ -115,7 +115,7 @@
                                         onclick="addToWishList(this.id)">
                                         <i class="czi-heart"></i>
                                     </button>
-                                    <a class=" d-block overflow-hidden" href="{{ route('dc.movies.detail', $movie->id) }}">
+                                    <a class=" d-block overflow-hidden" href="{{ route('dc.detail', $movie->id) }}">
                                         <img src="{{ !empty($movie->photo) ? url('upload/product_images/' . $movie->photo) : url('upload/movie_image.jpg') }}"
                                             alt="Product">
                                     </a>
@@ -132,7 +132,7 @@
                                         </a>
                                     </div>
 
-                                    <a href="{{ route('dc.movies.detail', $movie->id) }}">
+                                    <a href="{{ route('dc.detail', $movie->id) }}">
                                         <div class="movie-title font-size-sm" id="mname_{{ $movie->id }}">
                                             {{ $movie->title }}
                                         </div>
@@ -196,8 +196,7 @@
                                         onclick="addToWishList(this.id)">
                                         <i class="czi-heart"></i>
                                     </button>
-                                    <a class=" d-block overflow-hidden"
-                                        href="{{ route('dc.series.detail', $movie->id) }}">
+                                    <a class=" d-block overflow-hidden" href="{{ route('dc.detail', $movie->id) }}">
                                         <img src="{{ !empty($movie->photo) ? url('upload/product_images/' . $movie->photo) : url('upload/movie_image.jpg') }}"
                                             alt="Product">
                                     </a>
@@ -214,7 +213,7 @@
                                         </a>
                                     </div>
 
-                                    <a href="{{ route('dc.series.detail', $movie->id) }}">
+                                    <a href="{{ route('dc.detail', $movie->id) }}">
                                         <div class="movie-title font-size-sm" id="mname_{{ $movie->id }}">
                                             {{ $movie->title }}
                                         </div>
@@ -239,7 +238,7 @@
                 <!-- Update PC Game -->
                 <div class="d-flex justify-content-center justify-content-sm-between align-items-center pt-5 pb-3 pb-sm-2">
                     <div class="d-flex flex-wrap">
-                        <div class="order-lg-1 pr-lg-2 text-center text-lg-left ml-2" style="border-left: 4px solid #fff">
+                        <div class="order-lg-1 pr-lg-2 text-center text-lg-left">
                             <h1 class="h5 mb-0 ml-2">
                                 <a class="" href="shop-grid-ls.html" id="h-a">
                                     Update PC Game<i class="czi-arrow-right ml-1 mr-n1"></i>
@@ -277,8 +276,7 @@
                                         onclick="addToWishList(this.id)">
                                         <i class="czi-heart"></i>
                                     </button>
-                                    <a class=" d-block overflow-hidden"
-                                        href="{{ route('dc.games.detail', $movie->id) }}">
+                                    <a class=" d-block overflow-hidden" href="{{ route('dc.detail', $movie->id) }}">
                                         <img src="{{ !empty($movie->photo) ? url('upload/product_images/' . $movie->photo) : url('upload/movie_image.jpg') }}"
                                             alt="Product">
                                     </a>
@@ -295,7 +293,7 @@
                                         </a>
                                     </div>
 
-                                    <a href="{{ route('dc.games.detail', $movie->id) }}">
+                                    <a href="{{ route('dc.detail', $movie->id) }}">
                                         <div class="movie-title font-size-sm" id="mname_{{ $movie->id }}">
                                             {{ $movie->title }}
                                         </div>

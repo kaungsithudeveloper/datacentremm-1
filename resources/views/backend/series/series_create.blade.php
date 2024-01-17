@@ -314,9 +314,6 @@
                         required: true,
                     },
 
-                    runtime: {
-                        required: true,
-                    },
                     video_format: {
                         required: true,
                     },
@@ -344,9 +341,6 @@
                     },
                     release_date: {
                         required: 'Please Enter Release Date',
-                    },
-                    runtime: {
-                        required: 'Please Enter Runtime',
                     },
                     video_format: {
                         required: 'Please Enter Video Format',

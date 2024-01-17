@@ -69,7 +69,7 @@ class GameController extends Controller
             'selling_price' => 'required',
             'discount_price' => 'required',
             'genre_id' => 'nullable|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         if ($request->file('photo')) {

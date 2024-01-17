@@ -14,7 +14,7 @@
                 </div>
                 <!-- Products grid-->
                 <div class="row">
-                    @foreach ($movies as $movie)
+                    @foreach ($games as $movie)
                         <!-- Movie-->
                         <div class="col-4 col-md-2 px-2 mb-4">
                             <div class="card product-card card-static" id="custom-card">
@@ -61,13 +61,13 @@
                 <!-- Pagination-->
                 <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
                     <ul class="pagination">
-                        @if ($movies->onFirstPage())
+                        @if ($games->onFirstPage())
                             <li class="page-item disabled">
                                 <span class="page-link"><i class="czi-arrow-left mr-2"></i>Prev</span>
                             </li>
                         @else
                             <li class="page-item">
-                                <a class="page-link" href="{{ $movies->previousPageUrl() }}"><i
+                                <a class="page-link" href="{{ $games->previousPageUrl() }}"><i
                                         class="czi-arrow-left mr-2"></i>Prev</a>
                             </li>
                         @endif
@@ -75,27 +75,47 @@
 
                     <ul class="pagination">
                         <li class="page-item d-sm-none">
-                            <span class="page-link page-link-static">{{ $movies->currentPage() }} /
-                                {{ $movies->lastPage() }}</span>
+                            <span class="page-link page-link-static">{{ $games->currentPage() }} /
+                                {{ $games->lastPage() }}</span>
                         </li>
-                        @foreach (range(1, $movies->lastPage()) as $page)
-                            @if ($page == $movies->currentPage())
+
+                        @if ($games->currentPage() > 4)
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $games->url(1) }}">1</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                        @endif
+
+                        @foreach (range(max($games->currentPage() - 2, 1), min($games->currentPage() + 2, $games->lastPage())) as $page)
+                            @if ($page == $games->currentPage())
                                 <li class="page-item active d-none d-sm-block" aria-current="page">
                                     <span class="page-link">{{ $page }}<span
                                             class="sr-only">(current)</span></span>
                                 </li>
                             @else
                                 <li class="page-item d-none d-sm-block">
-                                    <a class="page-link" href="{{ $movies->url($page) }}">{{ $page }}</a>
+                                    <a class="page-link" href="{{ $games->url($page) }}">{{ $page }}</a>
                                 </li>
                             @endif
                         @endforeach
+
+                        @if ($games->currentPage() < $games->lastPage() - 3)
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="{{ $games->url($games->lastPage()) }}">{{ $games->lastPage() }}</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <ul class="pagination">
-                        @if ($movies->hasMorePages())
+                        @if ($games->hasMorePages())
                             <li class="page-item">
-                                <a class="page-link" href="{{ $movies->nextPageUrl() }}" aria-label="Next">Next<i
+                                <a class="page-link" href="{{ $games->nextPageUrl() }}" aria-label="Next">Next<i
                                         class="czi-arrow-right ml-2"></i></a>
                             </li>
                         @else

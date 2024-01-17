@@ -23,7 +23,7 @@
                                     onclick="addToWishList(this.id)">
                                     <i class="czi-heart"></i>
                                 </button>
-                                <a class=" d-block overflow-hidden" href="{{ route('dc.series.detail', $movie->id) }}">
+                                <a class=" d-block overflow-hidden" href="{{ route('dc.detail', $movie->id) }}">
                                     <img src="{{ !empty($movie->photo) ? url('upload/product_images/' . $movie->photo) : url('upload/movie_image.jpg') }}"
                                         alt="Product">
                                 </a>
@@ -40,7 +40,7 @@
                                     </a>
                                 </div>
 
-                                <a href="{{ route('dc.series.detail', $movie->id) }}">
+                                <a href="{{ route('dc.detail', $movie->id) }}">
                                     <div class="movie-title font-size-sm" id="mname_{{ $movie->id }}">
                                         {{ $movie->title }}
                                     </div>
@@ -78,7 +78,17 @@
                             <span class="page-link page-link-static">{{ $series->currentPage() }} /
                                 {{ $series->lastPage() }}</span>
                         </li>
-                        @foreach (range(1, $series->lastPage()) as $page)
+
+                        @if ($series->currentPage() > 4)
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $series->url(1) }}">1</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                        @endif
+
+                        @foreach (range(max($series->currentPage() - 2, 1), min($series->currentPage() + 2, $series->lastPage())) as $page)
                             @if ($page == $series->currentPage())
                                 <li class="page-item active d-none d-sm-block" aria-current="page">
                                     <span class="page-link">{{ $page }}<span
@@ -90,6 +100,16 @@
                                 </li>
                             @endif
                         @endforeach
+
+                        @if ($series->currentPage() < $series->lastPage() - 3)
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="{{ $series->url($series->lastPage()) }}">{{ $series->lastPage() }}</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <ul class="pagination">

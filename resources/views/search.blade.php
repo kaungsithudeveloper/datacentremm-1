@@ -24,7 +24,7 @@
                                     onclick="addToWishList(this.id)">
                                     <i class="czi-heart"></i>
                                 </button>
-                                <a class=" d-block overflow-hidden" href="{{ route('dc.movies.detail', $movie->id) }}">
+                                <a class=" d-block overflow-hidden" href="{{ route('dc.detail', $movie->id) }}">
                                     <img src="{{ !empty($movie->photo) ? url('upload/product_images/' . $movie->photo) : url('upload/movie_image.jpg') }}"
                                         alt="Product">
                                 </a>
@@ -41,7 +41,7 @@
                                     </a>
                                 </div>
 
-                                <a href="{{ route('dc.movies.detail', $movie->id) }}">
+                                <a href="{{ route('dc.detail', $movie->id) }}">
                                     <div class="movie-title font-size-sm" id="mname_{{ $movie->id }}">
                                         {{ $movie->title }}
                                     </div>
@@ -80,7 +80,17 @@
                             <span class="page-link page-link-static">{{ $data->currentPage() }} /
                                 {{ $data->lastPage() }}</span>
                         </li>
-                        @foreach (range(1, $data->lastPage()) as $page)
+
+                        @if ($data->currentPage() > 4)
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $data->url(1) }}">1</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                        @endif
+
+                        @foreach (range(max($data->currentPage() - 2, 1), min($data->currentPage() + 2, $data->lastPage())) as $page)
                             @if ($page == $data->currentPage())
                                 <li class="page-item active d-none d-sm-block" aria-current="page">
                                     <span class="page-link">{{ $page }}<span
@@ -92,10 +102,19 @@
                                 </li>
                             @endif
                         @endforeach
+
+                        @if ($data->currentPage() < $data->lastPage() - 3)
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="{{ $data->url($data->lastPage()) }}">{{ $data->lastPage() }}</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <ul class="pagination">
-
                         @if ($data->hasMorePages())
                             <li class="page-item">
                                 <a class="page-link" href="{{ $data->nextPageUrl() }}" aria-label="Next">Next<i
@@ -106,7 +125,6 @@
                                 <span class="page-link">Next<i class="czi-arrow-right ml-2"></i></span>
                             </li>
                         @endif
-
                     </ul>
                 </nav>
             </section>

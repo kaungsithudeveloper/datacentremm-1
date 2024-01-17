@@ -10,6 +10,7 @@ use App\Models\Backend\PostCategorie;
 use App\Models\Backend\PostTags;
 use App\Models\Backend\Movie;
 use App\Models\Backend\Genre;
+use App\Models\Backend\Product;
 
 class FrontendCastController extends Controller
 {
@@ -18,10 +19,11 @@ class FrontendCastController extends Controller
      */
     public function index()
     {
-        $casts = Cast::latest()->paginate(18);
+        $movies = Product::where('type', 'movie')->where('status', 1)->latest()->paginate(18);
+        $casts = Cast::latest()->paginate(30);
         $genres = Genre::all();
         $posts = Blog::where('status', 1)->latest()->take(6)->get();
-        return view('frontend.casts.cast_index',compact('casts','genres','posts'));
+        return view('frontend.casts.cast_index',compact('movies', 'casts','genres','posts'));
     }
 
     /**
