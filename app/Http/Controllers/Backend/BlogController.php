@@ -415,7 +415,7 @@ class BlogController extends Controller
         $blogs = Blog::with('categories', 'tags')->latest()->take(12)->get();
         $genres = Genre::all();
         $posts = Blog::where('status', 1)->latest()->paginate(9);
-        return view('Frontend.blogs.blog_index',compact('blogs','genres','posts'));
+        return view('frontend.blogs.blog_index',compact('blogs','genres','posts'));
     }// End Method
 
     public function DCdetail($id)
@@ -427,7 +427,7 @@ class BlogController extends Controller
         $comments = $blog->comments;
         $posts = Blog::where('status', 1)->latest()->paginate(6);
 
-        return view('Frontend.blogs.blog_detail', compact('id', 'blog','posts','genres', 'categories', 'tags', 'comments' ));
+        return view('frontend.blogs.blog_detail', compact('id', 'blog','posts','genres', 'categories', 'tags', 'comments' ));
     }// End Method
 
     public function DCUserPost($id)
@@ -437,7 +437,7 @@ class BlogController extends Controller
         $genres = Genre::all();
         $posts = Blog::where('user_id', $user->id)->where('status', 1)->latest()->paginate(9);
 
-        return view('Frontend.blogs.blog_user_post', compact('user', 'blogs', 'genres','posts'));
+        return view('frontend.blogs.blog_user_post', compact('user', 'blogs', 'genres','posts'));
     }// End Method
 
     public function DCPostCommentStore(Request $request)
@@ -465,7 +465,7 @@ class BlogController extends Controller
         $posts = $category->blogs()->where('status', 1)->latest()->paginate(9);
         $genres = Genre::all();
 
-        return view('Frontend.blogs.blog_post_category', compact('category', 'posts', 'blogs','genres'));
+        return view('frontend.blogs.blog_post_category', compact('category', 'posts', 'blogs','genres'));
     }// End Method
 
     public function DCPostTag($id)
@@ -475,7 +475,7 @@ class BlogController extends Controller
         $blogs = Blog::with('categories', 'tags')->latest()->take(12)->get();
         $genres = Genre::all();
 
-        return view('Frontend.blogs.blog_post_tag', compact('tag', 'posts', 'blogs','post','genres'));
+        return view('frontend.blogs.blog_post_tag', compact('tag', 'posts', 'blogs','post','genres'));
     }// End Method
 
     public function DCPostDate($date)
@@ -484,7 +484,7 @@ class BlogController extends Controller
         $posts = Blog::whereDate('created_at', $date)->where('status', 1)->latest()->paginate(9);
         $genres = Genre::all();
 
-        return view('Frontend.blogs.blog_post_date', compact('posts','blogs','genres'));
+        return view('frontend.blogs.blog_post_date', compact('posts','blogs','genres'));
     }// End Method
 
 }

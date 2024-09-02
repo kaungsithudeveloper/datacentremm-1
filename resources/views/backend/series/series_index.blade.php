@@ -10,7 +10,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Series</h1>
+                    <h1 class="page-title">
+                        <a href="{{ route('series.create') }}" class="btn btn-primary">
+                            Add New Serie
+                        </a>
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
@@ -58,8 +62,8 @@
                                             <div class="tab-content">
                                                 <div class="tab-pane active" id="tab5">
                                                     <div class="table-responsive">
-                                                        <table id="responsive-datatable"
-                                                            class="table table-bordered text-nowrap mb-0 table-striped">
+                                                        <table id="example2"
+                                                            class="table table-bordered text-nowrap border-bottom">
                                                             <thead class="border-top">
                                                                 <tr>
                                                                     <th class="bg-transparent border-bottom-0 text-center"
@@ -73,14 +77,16 @@
                                                                         Code
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 20%;"> Movies Title
+                                                                        style="width: 20%;"> Series Title
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0">
-                                                                        Categories</th>
-                                                                    <th class="bg-transparent border-bottom-0"> Genres
+                                                                        Price
                                                                     </th>
-                                                                    <th class="bg-transparent border-bottom-0"> Casts
+
+                                                                    <th class="bg-transparent border-bottom-0">
+                                                                        Name
                                                                     </th>
+
                                                                     <th class="bg-transparent border-bottom-0">
                                                                         Created Date
                                                                     </th>
@@ -131,11 +137,9 @@
                                                                         <td>
                                                                             <div class="d-flex">
                                                                                 <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_categories as $category)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $category->name }}
-                                                                                        </span>
-                                                                                    @endforeach
+                                                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                        {{ $serie->selling_price }}
+                                                                                    </h6>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -143,23 +147,9 @@
                                                                         <td>
                                                                             <div class="d-flex">
                                                                                 <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_genres as $genre)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $genre->name }}
-                                                                                        </span>
-                                                                                    @endforeach
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-
-                                                                        <td>
-                                                                            <div class="d-flex">
-                                                                                <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_casts as $cast)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $cast->name }}
-                                                                                        </span>
-                                                                                    @endforeach
+                                                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                        {{ $serie->user->name }}
+                                                                                    </h6>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -201,7 +191,8 @@
 
                                                                                 <a href="{{ route('series.delete', $serie->id) }}"
                                                                                     class="btn text-danger btn-sm"
-                                                                                    id="delete" data-bs-toggle="tooltip"
+                                                                                    id="delete"
+                                                                                    data-bs-toggle="tooltip"
                                                                                     data-bs-original-title="Delete">
                                                                                     <span
                                                                                         class="fe fe-trash-2 fs-14"></span>
@@ -217,8 +208,8 @@
                                                 </div>
                                                 <div class="tab-pane" id="tab6">
                                                     <div class="table-responsive">
-                                                        <table id="responsive-datatable"
-                                                            class="table table-bordered text-nowrap mb-0 table-striped">
+                                                        <table id="example2"
+                                                            class="table table-bordered text-nowrap border-bottom">
                                                             <thead class="border-top">
                                                                 <tr>
                                                                     <th class="bg-transparent border-bottom-0 text-center"
@@ -232,15 +223,18 @@
                                                                         Code
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 20%;"> Blog Title
+                                                                        style="width: 20%;"> Series Title
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0">
-                                                                        Categories</th>
-                                                                    <th class="bg-transparent border-bottom-0"> Tags
+                                                                        Price
                                                                     </th>
-                                                                    <th class="bg-transparent border-bottom-0"> Autor
+
+                                                                    <th class="bg-transparent border-bottom-0">
+                                                                        Name
                                                                     </th>
-                                                                    <th class="bg-transparent border-bottom-0"> Date
+
+                                                                    <th class="bg-transparent border-bottom-0">
+                                                                        Created Date
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0 text-center "
                                                                         style="width: 10%;">
@@ -289,38 +283,13 @@
                                                                         <td>
                                                                             <div class="d-flex">
                                                                                 <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_categories as $category)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $category->name }}
-                                                                                        </span>
-                                                                                    @endforeach
+                                                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                        {{ $serie->user->name }}
+                                                                                    </h6>
                                                                                 </div>
                                                                             </div>
                                                                         </td>
 
-                                                                        <td>
-                                                                            <div class="d-flex">
-                                                                                <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_genres as $genre)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $genre->name }}
-                                                                                        </span>
-                                                                                    @endforeach
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-
-                                                                        <td>
-                                                                            <div class="d-flex">
-                                                                                <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_casts as $cast)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $cast->name }}
-                                                                                        </span>
-                                                                                    @endforeach
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
 
                                                                         <td>
                                                                             <div class="d-flex">
@@ -379,8 +348,8 @@
                                                 </div>
                                                 <div class="tab-pane" id="tab7">
                                                     <div class="table-responsive">
-                                                        <table id="responsive-datatable"
-                                                            class="table table-bordered text-nowrap mb-0 table-striped">
+                                                        <table id="example2"
+                                                            class="table table-bordered text-nowrap border-bottom">
                                                             <thead class="border-top">
                                                                 <tr>
                                                                     <th class="bg-transparent border-bottom-0 text-center"
@@ -394,15 +363,18 @@
                                                                         Code
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0"
-                                                                        style="width: 20%;"> Blog Title
+                                                                        style="width: 20%;"> Series Title
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0">
-                                                                        Categories</th>
-                                                                    <th class="bg-transparent border-bottom-0"> Tags
+                                                                        Price
                                                                     </th>
-                                                                    <th class="bg-transparent border-bottom-0"> Autor
+
+                                                                    <th class="bg-transparent border-bottom-0">
+                                                                        Name
                                                                     </th>
-                                                                    <th class="bg-transparent border-bottom-0"> Date
+
+                                                                    <th class="bg-transparent border-bottom-0">
+                                                                        Created Date
                                                                     </th>
                                                                     <th class="bg-transparent border-bottom-0 text-center "
                                                                         style="width: 10%;">
@@ -452,35 +424,9 @@
                                                                         <td>
                                                                             <div class="d-flex">
                                                                                 <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_categories as $category)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $category->name }}
-                                                                                        </span>
-                                                                                    @endforeach
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-
-                                                                        <td>
-                                                                            <div class="d-flex">
-                                                                                <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_genres as $genre)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $genre->name }}
-                                                                                        </span>
-                                                                                    @endforeach
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-
-                                                                        <td>
-                                                                            <div class="d-flex">
-                                                                                <div class="mt-0 mt-sm-3 d-block">
-                                                                                    @foreach ($serie->series_casts as $cast)
-                                                                                        <span class="tag tag-blue">
-                                                                                            {{ $cast->name }}
-                                                                                        </span>
-                                                                                    @endforeach
+                                                                                    <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                        {{ $serie->user->name }}
+                                                                                    </h6>
                                                                                 </div>
                                                                             </div>
                                                                         </td>

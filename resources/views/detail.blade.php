@@ -21,78 +21,57 @@
                                 {{ $detail->title }}
                             </a>
                         </h5>
-
-
-
-                        <a class="btn-tag mt-2 mb-2" id="h-a" href="#">
-                            {{ $detail->rating }}
-                        </a>
-
-                        <div class="star-rating ml-2">
-                            @php
-                                $rating = $detail->rating; // Get the rating value from your model
-                                $maxRating = 10; // Assuming a maximum rating of 5 stars
-
-                                // Loop through and display stars (full, half, or empty) based on the rating value
-                                for ($i = 1; $i <= $maxRating; $i++) {
-                                    if ($rating >= $i) {
-                                        echo '<i class="sr-star czi-star-filled active"></i>';
-                                    } else {
-                                        echo '<i class="sr-star czi-star"></i>';
-                                    }
-                                }
-                            @endphp
-                        </div>
-
-                        <h5 class="product-title text-primary mt-2">
-
-                            Price - {{ $detail->selling_price }}Ks
-
-                        </h5>
-
                         <div>
-                            <a class="product-meta font-size-sm pb-1" id="h-a"
-                                href="{{ route('dc.movies.years', ['release_date' => $detail->release_date]) }}">
-                                Release Date : {{ $detail->release_date }}
-                            </a>
-                        </div>
+                            @if ($detail->type == 'serie')
+                                <a class="btn-tag mt-2 mb-2" id="h-a" href="#">
+                                    {{ $detail->rating }}
+                                </a>
 
-                        <div>
-                            @if ($detail->type == 'movie')
-                                <a class="product-meta font-size-sm pb-1 text-white">
-                                    Category :
-                                </a>
-                                @foreach ($detail->categories as $category)
-                                    <a class="product-meta font-size-sm pb-1" id="h-a"
-                                        href="{{ route('dc.movies.categories', ['id' => $category->id]) }}">
-                                        {{ $category->name }},
-                                    </a>
-                                @endforeach
-                            @elseif ($detail->type == 'serie')
-                                <a class="product-meta font-size-sm pb-1 text-white">
-                                    Category :
-                                </a>
-                                @foreach ($detail->series_categories as $category)
-                                    <a class="product-meta font-size-sm pb-1" id="h-a"
-                                        href="{{ route('dc.series.categories', ['id' => $category->id]) }}">
-                                        {{ $category->name }},
-                                    </a>
-                                @endforeach
-                            @endif
-                        </div>
-                        <div>
+                                <div class="star-rating ml-2">
+                                    @php
+                                        $rating = $detail->rating; // Get the rating value from your model
+                                        $maxRating = 10; // Assuming a maximum rating of 5 stars
 
-                            @if ($detail->type == 'movie')
-                                <a class="product-meta font-size-sm pb-1 text-white">
-                                    Genres :
-                                </a>
-                                @foreach ($detail->genres as $genre)
+                                        // Loop through and display stars (full, half, or empty) based on the rating value
+                                        for ($i = 1; $i <= $maxRating; $i++) {
+                                            if ($rating >= $i) {
+                                                echo '<i class="sr-star czi-star-filled active"></i>';
+                                            } else {
+                                                echo '<i class="sr-star czi-star"></i>';
+                                            }
+                                        }
+                                    @endphp
+                                </div>
+                                <h5 class="product-title text-primary mt-2">
+                                    Price - {{ $detail->selling_price }}Ks
+                                </h5>
+                                <div class="font-size-sm text-white">
+                                    {!! nl2br(e($detail->short_descp)) !!}
+                                </div>
+                                <div>
                                     <a class="product-meta font-size-sm pb-1" id="h-a"
-                                        href="{{ route('dc.movies.genres', ['id' => $genre->id]) }}">
-                                        {{ $genre->name }},
+                                        href="{{ route('dc.series.years', ['release_date' => $detail->release_date]) }}">
+                                        Release Date : {{ $detail->release_date }}
                                     </a>
-                                @endforeach
-                            @elseif ($detail->type == 'serie')
+                                </div>
+                                <div class="font-size-sm text-white">
+                                    Runtime : {{ $detail->runtime }}
+
+                                </div>
+                                <div class="font-size-sm text-white">
+                                    Video Format : {{ $detail->video_format }}
+                                </div>
+                                <div>
+                                    <a class="product-meta font-size-sm pb-1 text-white">
+                                        Category :
+                                    </a>
+                                    @foreach ($detail->series_categories as $category)
+                                        <a class="product-meta font-size-sm pb-1" id="h-a"
+                                            href="{{ route('dc.series.categories', ['id' => $category->id]) }}">
+                                            {{ $category->name }},
+                                        </a>
+                                    @endforeach
+                                </div>
                                 <a class="product-meta font-size-sm pb-1 text-white">
                                     Genres :
                                 </a>
@@ -102,7 +81,67 @@
                                         {{ $serieGenre->name }},
                                     </a>
                                 @endforeach
+                            @elseif ($detail->type == 'movie')
+                                <a class="btn-tag mt-2 mb-2" id="h-a" href="#">
+                                    {{ $detail->rating }}
+                                </a>
+                                <div class="star-rating ml-2">
+                                    @php
+                                        $rating = $detail->rating; // Get the rating value from your model
+                                        $maxRating = 10; // Assuming a maximum rating of 5 stars
+
+                                        // Loop through and display stars (full, half, or empty) based on the rating value
+                                        for ($i = 1; $i <= $maxRating; $i++) {
+                                            if ($rating >= $i) {
+                                                echo '<i class="sr-star czi-star-filled active"></i>';
+                                            } else {
+                                                echo '<i class="sr-star czi-star"></i>';
+                                            }
+                                        }
+                                    @endphp
+                                </div>
+                                <h5 class="product-title text-primary mt-2">
+                                    Price - {{ $detail->selling_price }}Ks
+                                </h5>
+                                <div>
+                                    <a class="product-meta font-size-sm pb-1" id="h-a"
+                                        href="{{ route('dc.movies.years', ['release_date' => $detail->release_date]) }}">
+                                        Release Date : {{ $detail->release_date }}
+                                    </a>
+                                </div>
+                                <div class="font-size-sm text-white">
+                                    Runtime : {{ $detail->runtime }}
+                                </div>
+                                <div class="font-size-sm text-white">
+                                    Video Format : {{ $detail->video_format }}
+                                </div>
+                                <div>
+                                    <a class="product-meta font-size-sm pb-1 text-white">
+                                        Category :
+                                    </a>
+                                    @foreach ($detail->categories as $category)
+                                        <a class="product-meta font-size-sm pb-1" id="h-a"
+                                            href="{{ route('dc.movies.categories', ['id' => $category->id]) }}">
+                                            {{ $category->name }},
+                                        </a>
+                                    @endforeach
+                                </div>
+                                <a class="product-meta font-size-sm pb-1 text-white">
+                                    Genres :
+                                </a>
+                                @foreach ($detail->genres as $genre)
+                                    <a class="product-meta font-size-sm pb-1" id="h-a"
+                                        href="{{ route('dc.movies.genres', ['id' => $genre->id]) }}">
+                                        {{ $genre->name }},
+                                    </a>
+                                @endforeach
                             @elseif ($detail->type == 'game')
+                                <h5 class="product-title text-primary mt-2">
+                                    Price - {{ $detail->selling_price }}Ks
+                                </h5>
+                                <div class="font-size-sm text-white">
+                                    {!! nl2br(e($detail->short_descp)) !!}
+                                </div>
                                 <a class="product-meta font-size-sm pb-1 text-white">
                                     Genres :
                                 </a>
@@ -113,19 +152,6 @@
                                     </a>
                                 @endforeach
                             @endif
-
-
-                        </div>
-                        <div class="font-size-sm text-white">
-                            Runtime : {{ $detail->runtime }}
-
-                        </div>
-                        <div class="font-size-sm text-white">
-                            Video Format : {{ $detail->video_format }}
-                        </div>
-
-                        <div class="font-size-sm text-white">
-                            Release Date : {{ $detail->release_date }}
                         </div>
 
                         <br class="">
@@ -135,68 +161,161 @@
                             <input type="hidden" class="qty" value="1">
                             <button type="button" class="btn btn-primary btn-sm mb-2"
                                 onclick="addToCartDetails({{ $detail->id }})">
-                                <i class="czi-cart font-size-sm mr-1"></i>Add to Cart</button>
+                                <i class="czi-cart font-size-sm mr-1"></i>Add to Cart
+                            </button>
 
                             <a type="button" class="btn btn-secondary btn-sm mb-2 nav-link-style font-size-ms"
                                 href="#quick-view" data-toggle="modal">
-                                <i class="czi-eye align-middle mr-1"></i>Trailer</a>
+                                <i class="czi-eye align-middle mr-1"></i>Trailer
+                            </a>
 
                         </div>
-
-
                     </div>
+
                 </div>
                 <!-- Nav tabs-->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link p-4 active" href="#details" data-toggle="tab" role="tab">
-                            Description
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link p-4" href="#reviews" data-toggle="tab" role="tab">
-                            Casts
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content pt-2">
-                    <!-- Movie details tab-->
-                    <div class="tab-pane fade show active" id="details" role="tabpanel">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <p>
-                                <div id="movie_des">
-                                    {!! html_entity_decode($detail->description) !!}
+                @if ($detail->type == 'movie')
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link p-4 active" href="#details" data-toggle="tab" role="tab">
+                                Description
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-4" href="#reviews" data-toggle="tab" role="tab">
+                                Casts
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2">
+                        <!-- Movie details tab-->
+                        <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="row text-white">
+                                <div class="col-lg-12">
+                                    <p>
+                                    <div id="movie_des">
+                                        {!! html_entity_decode($detail->description) !!}
+                                    </div>
+                                    </p>
                                 </div>
-                                </p>
+                            </div>
+                        </div>
+                        <!-- Cast tab-->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="row pt-4">
+                                @foreach ($casts as $cast)
+                                    <div class="col-md-2 col-4 mb-1">
+                                        <div class="card" id="custom-card">
+                                            <a class="blog-entry-thumb gallery-item"
+                                                href="{{ route('dc.casts.detail', $cast->id) }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
+                                                    alt="Post">
+                                            </a>
+                                            <div class="card-body">
+                                                <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
+                                                    <div class="movie-title">
+                                                        {{ $cast->name }}
+                                                    </div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                    <!-- Cast tab-->
-                    <div class="tab-pane fade" id="reviews" role="tabpanel">
-                        <div class="row pt-4">
-                            @foreach ($casts as $cast)
-                                <div class="col-md-2 col-4 mb-1">
-                                    <div class="card" id="custom-card">
-                                        <a class="blog-entry-thumb gallery-item"
-                                            href="{{ route('dc.casts.detail', $cast->id) }}">
-                                            <img class="card-img-top"
-                                                src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
-                                                alt="Post">
-                                        </a>
-                                        <div class="card-body">
-                                            <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
-                                                <div class="movie-title">
-                                                    {{ $cast->name }}
-                                                </div>
-                                            </h6>
+                @elseif ($detail->type == 'serie')
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link p-4 active" href="#details" data-toggle="tab" role="tab">
+                                Description
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-4" href="#reviews" data-toggle="tab" role="tab">
+                                Casts
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2">
+                        <!-- Movie details tab-->
+                        <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="row text-white">
+                                <div class="col-lg-12">
+                                    <p>
+                                    <div id="movie_des">
+                                        {!! html_entity_decode($detail->description) !!}
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cast tab-->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="row pt-4">
+                                @foreach ($casts as $cast)
+                                    <div class="col-md-2 col-4 mb-1">
+                                        <div class="card" id="custom-card">
+                                            <a class="blog-entry-thumb gallery-item"
+                                                href="{{ route('dc.casts.detail', $cast->id) }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
+                                                    alt="Post">
+                                            </a>
+                                            <div class="card-body">
+                                                <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
+                                                    <div class="movie-title">
+                                                        {{ $cast->name }}
+                                                    </div>
+                                                </h6>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
+                @elseif ($detail->type == 'game')
+                    <div class="tab-content pt-2">
+                        <!-- Movie details tab-->
+                        <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="row text-white">
+                                <div class="col-lg-12">
+                                    <p>
+                                    <div id="movie_des">
+                                        {!! html_entity_decode($detail->description) !!}
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cast tab-->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="row pt-4">
+                                @foreach ($casts as $cast)
+                                    <div class="col-md-2 col-4 mb-1">
+                                        <div class="card" id="custom-card">
+                                            <a class="blog-entry-thumb gallery-item"
+                                                href="{{ route('dc.casts.detail', $cast->id) }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
+                                                    alt="Post">
+                                            </a>
+                                            <div class="card-body">
+                                                <h6 class="blog-entry-title" style="font-size: 13px" id="h-a">
+                                                    <div class="movie-title">
+                                                        {{ $cast->name }}
+                                                    </div>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class=" my-lg-3 py-5">
                     <div class="container pt-md-2">
                         <hr class="mt-4 pb-4 mb-3">
@@ -279,24 +398,24 @@
                 <div class="cz-sidebar rounded-lg box-shadow-lg ml-lg-auto" id="shop-sidebar"
                     style="background-color: #233a50;">
                     <div class="cz-sidebar-header box-shadow-sm">
-                        <button class="close ml-auto" type="button" data-dismiss="sidebar" aria-label="Close"><span
-                                class="d-inline-block font-size-xs font-weight-normal align-middle">Close
+                        <button class="close ml-auto" type="button" data-dismiss="sidebar" aria-label="Close">
+                            <span class="d-inline-block font-size-xs font-weight-normal align-middle">Close
                                 sidebar</span><span class="d-inline-block align-middle ml-2"
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="cz-sidebar-body" data-simplebar data-simplebar-auto-hide="true">
                         <!-- Movie Series Genre-->
                         <ul class="nav nav-tabs nav-fill" role="tablist">
-                            <li class="nav-item"><a class="nav-link  active" href="#details" data-toggle="tab"
+                            <li class="nav-item"><a class="nav-link  active" href="#movies" data-toggle="tab"
                                     role="tab">Movies</a></li>
-                            <li class="nav-item"><a class="nav-link " href="#reviews" data-toggle="tab"
+                            <li class="nav-item"><a class="nav-link " href="#series" data-toggle="tab"
                                     role="tab">Series</a>
                             </li>
                         </ul>
 
                         <div class="tab-content pt-2">
                             <!-- Movie details tab-->
-                            <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="tab-pane fade show active" id="movies" role="tabpanel">
                                 <div class="widget widget-categories mb-4 pb-4 border-bottom">
                                     <div class="accordion mt-n1" id="shop-categories">
                                         <!-- Movie-->
@@ -341,7 +460,7 @@
                                 </div>
                             </div>
                             <!-- Cast tab-->
-                            <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="tab-pane fade" id="series" role="tabpanel">
                                 <div class="widget widget-categories mb-4 pb-4 border-bottom">
                                     <div class="accordion mt-n1" id="shop-categories">
                                         <!-- series-->

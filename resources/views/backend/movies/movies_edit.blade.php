@@ -109,7 +109,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="name" class="form-label">Video Format :</label>
+                                                <label for="name" class="form-label">Quality :</label>
                                                 <input type="text" class="form-control" placeholder="Name"
                                                     name="video_format" value="{{ $movie->video_format }}">
                                             </div>
@@ -159,7 +159,7 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group mb-4">
-                                                <label for="genre_id" class="form-label">Genress:</label>
+                                                <label for="genre_id" class="form-label">Genres:</label>
                                                 <input type="text" name="genre_id" class="form-control"
                                                     data-role="tagsinput" id="genres"
                                                     value="{{ $genres->pluck('name')->implode(',') }}" required>
@@ -390,7 +390,6 @@
 @push('scripts')
     <!-- tagsinput -->
     <script src="{{ url('backend/plugins/input-tags/js/tagsinput.js') }}"></script>
-    <script src="{{ url('backend/plugins/input-tags/js/bootstrap-tagsinput.min.js') }}"></script>
 
     <!-- typeahead -->
     <script src="{{ asset('backend/plugins/typeahead/typeahead.bundle.js') }}"></script>

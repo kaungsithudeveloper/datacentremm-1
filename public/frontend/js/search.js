@@ -1,4 +1,4 @@
-const site_url = "http://127.0.0.1:8000/";
+const site_url = "http://www.datacentremm.org/";
 
 $("body").on("keyup", "#search", function () {
     let text = $("#search").val();
@@ -12,7 +12,7 @@ $("body").on("keyup", "#search", function () {
             beforSend: function (request) {
                 return request.setRequestHeader(
                     "X-CSRF-TOKEN",
-                    "meta[name='csrf-token']"
+                    $("meta[name='csrf-token']").attr("content")
                 );
             },
 

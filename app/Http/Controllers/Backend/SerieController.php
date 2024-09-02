@@ -68,7 +68,6 @@ class SerieController extends Controller
             'description' => 'required',
             'short_descp' => 'required',
             'release_date' => 'required',
-            'runtime' => 'required',
             'video_format' => 'required',
             'rating' => 'required',
             'trailer' => 'required',
@@ -79,6 +78,17 @@ class SerieController extends Controller
             'cast_id' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $existingProduct = Product::where('code', $validatedData['code'])->first();
+
+        if ($existingProduct) {
+            $notification = [
+                'message' => 'Series with the given code already exists.',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->withInput()->with($notification);
+        }
 
         if ($request->file('photo')) {
             $image = $request->file('photo');
@@ -95,8 +105,8 @@ class SerieController extends Controller
         $serie->description = $validatedData['description'];
         $serie->short_descp = $validatedData['short_descp'];
         $serie->release_date = $validatedData['release_date'];
-        $serie->runtime = $validatedData['runtime'];
         $serie->video_format = $validatedData['video_format'];
+        $serie->runtime = $request->runtime;
         $serie->rating = $validatedData['rating'];
         $serie->trailer = $validatedData['trailer'];
         $serie->selling_price = $validatedData['selling_price'];

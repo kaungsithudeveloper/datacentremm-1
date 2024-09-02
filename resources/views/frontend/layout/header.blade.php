@@ -106,9 +106,14 @@
                                     <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
                                         <a class="dropdown-item text-center" href="{{ route('user.account.page') }}">
                                             {{ Auth::user()->name }}</a>
-                                        <a class="dropdown-item text-center"
-                                            href="{{ route('user.password.page') }}">Update
-                                            Password</a>
+                                        <a class="dropdown-item text-center" href="{{ route('user.password.page') }}">
+                                            Update Password
+                                        </a>
+                                        @if (Auth::check() && Auth::user()->role == 'admin')
+                                            <a class="dropdown-item text-center" href="{{ route('admin.dashboard') }}">
+                                                Admin Dashboard
+                                            </a>
+                                        @endif
                                         <a class="dropdown-item text-center" href="{{ route('user.orders') }}">Order</a>
                                         <div class="dropdown-divider"></div>
                                         <div class="text-center p-1">
@@ -161,20 +166,15 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown ">
-                                <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown">
+                                <a class="nav-link" href="{{ route('dc.movies') }}">
                                     Movies
                                 </a>
+
                                 <div class="dropdown-menu p-0">
                                     <div class="d-flex flex-wrap flex-md-nowrap px-2">
                                         <div class="mega-dropdown-column py-4 px-3">
                                             <div class="widget widget-links mb-3 ">
                                                 <ul class="widget-list">
-                                                    <li class="widget-list-item">
-                                                        <a class="widget-list-link pb-1"
-                                                            href="{{ route('dc.movies') }}">
-                                                            Update Movies
-                                                        </a>
-                                                    </li>
                                                     @php
                                                         $categories = App\Models\Backend\Category::where('type', 'movie')
                                                             ->orderBy('name', 'ASC')
@@ -194,7 +194,7 @@
                             </li>
 
                             <li class="nav-item dropdown ">
-                                <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown">
+                                <a class="nav-link" href="{{ route('dc.series') }}">
                                     Series
                                 </a>
                                 <div class="dropdown-menu p-0">
@@ -202,12 +202,6 @@
                                         <div class="mega-dropdown-column py-4 px-3">
                                             <div class="widget widget-links mb-3 ">
                                                 <ul class="widget-list">
-                                                    <li class="widget-list-item">
-                                                        <a class="widget-list-link pb-1"
-                                                            href="{{ route('dc.series') }}">
-                                                            Update Series
-                                                        </a>
-                                                    </li>
                                                     @php
                                                         $categories = App\Models\Backend\Category::where('type', 'serie')
                                                             ->orderBy('name', 'ASC')
@@ -228,18 +222,41 @@
                             </li>
 
                             <li class="nav-item dropdown ">
-                                <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown">
+                                <a class="nav-link" href="{{ route('dc.games') }}">
                                     PC Games
                                 </a>
-                                <div class="dropdown-menu p-0">
+                                <style>
+                                    .dropdown-menu::-webkit-scrollbar {
+                                        width: 0px;
+                                        visibility: hidden;
+                                    }
+
+                                    .dropdown-menu::-webkit-scrollbar-thumb {
+                                        background-color: #888;
+                                        border-radius: 4px;
+
+                                    }
+
+                                    .dropdown-menu::-webkit-scrollbar-track {
+                                        background-color: #f1f1f1;
+                                    }
+                                </style>
+                                <div class="dropdown-menu p-0" style="max-height: 400px; overflow: auto;">
                                     <div class="d-flex flex-wrap flex-md-nowrap px-2">
                                         <div class="mega-dropdown-column py-4 px-3">
-                                            <div class="widget widget-links mb-3 ">
+                                            <div class="widget widget-links mb-3">
                                                 <ul class="widget-list">
                                                     <li class="widget-list-item">
                                                         <a class="widget-list-link pb-1"
                                                             href="{{ route('dc.games') }}">
                                                             Update PC Games
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="widget-list-item">
+                                                        <a class="widget-list-link pb-1"
+                                                            href="{{ route('dc.games') }}">
+                                                            Small PC Games
                                                         </a>
                                                     </li>
                                                     @php
@@ -250,7 +267,8 @@
                                                     @foreach ($genres as $genre)
                                                         <li class="widget-list-item pb-1">
                                                             <a class="widget-list-link "
-                                                                href="{{ route('dc.games.genres', ['id' => $genre->id]) }}">{{ $genre->name }}
+                                                                href="{{ route('dc.games.genres', ['id' => $genre->id]) }}">
+                                                                {{ $genre->name }}
                                                                 Games
                                                             </a>
                                                         </li>

@@ -117,8 +117,7 @@
     <script src="{{ url('frontend/js/vendor.min.js') }}"></script>
     <script src="{{ url('frontend/js/theme.min.js') }}"></script>
 
-    <!--Search Js -->
-    <script src="{{ url('frontend/js/search.js') }}"></script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -613,6 +612,9 @@
         }
         // Wishlist Remove End
     </script>
+
+    <!--Search Js -->
+    <script src="{{ url('frontend/js/search.js') }}"></script>
 
 
 </body>

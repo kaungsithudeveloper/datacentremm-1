@@ -10,7 +10,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Games</h1>
+                    <h1 class="page-title">
+                        <a href="{{ route('games.create') }}" class="btn btn-primary">
+                            Add New Games
+                        </a>
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
@@ -24,7 +28,10 @@
                     <div class="col-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title mb-0">Games</h3>
+                                <h3 class="card-title mb-0">
+                                    Games
+
+                                </h3>
                             </div>
                             <div class="card-body pt-4">
                                 <div class="grid-margin">
@@ -56,8 +63,8 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="tab5">
                                                         <div class="table-responsive">
-                                                            <table id="responsive-datatable"
-                                                                class="table table-bordered text-nowrap mb-0 table-striped">
+                                                            <table id="example2"
+                                                                class="table table-bordered text-nowrap border-bottom">
                                                                 <thead class="border-top">
                                                                     <tr>
                                                                         <th class="bg-transparent border-bottom-0 text-center"
@@ -71,6 +78,10 @@
                                                                         </th>
                                                                         <th class="bg-transparent border-bottom-0"
                                                                             style="width: 20%;"> Games Title
+                                                                        </th>
+
+                                                                        <th class="bg-transparent border-bottom-0"
+                                                                            style="width: 20%;"> User
                                                                         </th>
 
                                                                         <th class="bg-transparent border-bottom-0"> Genres
@@ -118,6 +129,16 @@
                                                                                     <div class="mt-0 mt-sm-3 d-block">
                                                                                         <h6 class="mb-0 fs-14 fw-semibold">
                                                                                             {{ $game->title }}
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <div class="d-flex">
+                                                                                    <div class="mt-0 mt-sm-3 d-block">
+                                                                                        <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                            {{ $game->user->name }}
                                                                                         </h6>
                                                                                     </div>
                                                                                 </div>
@@ -191,8 +212,8 @@
                                                     </div>
                                                     <div class="tab-pane" id="tab6">
                                                         <div class="table-responsive">
-                                                            <table id="responsive-datatable"
-                                                                class="table table-bordered text-nowrap mb-0 table-striped">
+                                                            <table id="example2"
+                                                                class="table table-bordered text-nowrap border-bottom">
                                                                 <thead class="border-top">
                                                                     <tr>
                                                                         <th class="bg-transparent border-bottom-0 text-center"
@@ -206,6 +227,10 @@
                                                                         </th>
                                                                         <th class="bg-transparent border-bottom-0"
                                                                             style="width: 20%;"> Games Title
+                                                                        </th>
+
+                                                                        <th class="bg-transparent border-bottom-0"
+                                                                            style="width: 20%;"> User
                                                                         </th>
 
                                                                         <th class="bg-transparent border-bottom-0"> Genres
@@ -258,6 +283,15 @@
                                                                                 </div>
                                                                             </td>
 
+                                                                            <td>
+                                                                                <div class="d-flex">
+                                                                                    <div class="mt-0 mt-sm-3 d-block">
+                                                                                        <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                            {{ $game->user->name }}
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
 
                                                                             <td>
                                                                                 <div class="d-flex">
@@ -326,8 +360,8 @@
                                                     </div>
                                                     <div class="tab-pane" id="tab7">
                                                         <div class="table-responsive">
-                                                            <table id="responsive-datatable"
-                                                                class="table table-bordered text-nowrap mb-0 table-striped">
+                                                            <table id="example2"
+                                                                class="table table-bordered text-nowrap border-bottom">
                                                                 <thead class="border-top">
                                                                     <tr>
                                                                         <th class="bg-transparent border-bottom-0 text-center"
@@ -341,6 +375,10 @@
                                                                         </th>
                                                                         <th class="bg-transparent border-bottom-0"
                                                                             style="width: 20%;"> Games Title
+                                                                        </th>
+
+                                                                        <th class="bg-transparent border-bottom-0"
+                                                                            style="width: 20%;"> User
                                                                         </th>
 
                                                                         <th class="bg-transparent border-bottom-0"> Genres
@@ -388,6 +426,16 @@
                                                                                     <div class="mt-0 mt-sm-3 d-block">
                                                                                         <h6 class="mb-0 fs-14 fw-semibold">
                                                                                             {{ $game->title }}
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <div class="d-flex">
+                                                                                    <div class="mt-0 mt-sm-3 d-block">
+                                                                                        <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                            {{ $game->user->name }}
                                                                                         </h6>
                                                                                     </div>
                                                                                 </div>

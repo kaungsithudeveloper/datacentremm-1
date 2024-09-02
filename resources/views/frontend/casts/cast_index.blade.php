@@ -1,54 +1,41 @@
 @extends('frontend.layout.layout')
 
 @section('content')
-    <div class="py-3" id="page-title">
-        <div class="container d-lg-flex justify-content-between py-2 py-lg-1">
-            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-1">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb flex-lg-nowrap justify-content-center justify-content-lg-star">
-                        <li class="breadcrumb-item"><a class="text-nowrap" href="index.html"><i class="czi-home"></i>Home</a>
-                        </li>
-                        <li class="breadcrumb-item text-nowrap"><a href="#">Cast</a>
-                        </li>
-                        <li class="breadcrumb-item text-nowrap active" aria-current="page"></li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="order-lg-1 pr-lg-2 text-center text-lg-left">
-                <h1 class="h3 mb-0 text-white"> Cast </h1>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="container  pb-5 mb-2 mb-md-4 mt-4">
+    <div class="container  pb-5 mb-2 mb-md-4">
         <div class="row">
             <!-- Content  -->
             <section class="col-lg-8">
-
-                <!-- Products grid-->
+                <!-- Toolbar-->
+                <div class="d-flex justify-content-center justify-content-sm-between align-items-center pt-2 pb-3 pb-sm-5">
+                    <div class="d-flex flex-wrap">
+                        <div class="order-lg-1 pr-lg-2 text-center text-lg-left">
+                            <h1 class="h3 mb-0 text-white">Update Movie </h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- Movies grid-->
                 <div class="row">
-                    @foreach ($casts as $key => $cast)
-                        <div class="col-md-2 col-4 mb-1">
-                            <div class="card" id="custom-card">
-                                <a class="blog-entry-thumb gallery-item" href="{{ route('dc.casts.detail', $cast->id) }}">
-                                    <img class="card-img-top"
-                                        src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
-                                        alt="Post">
+                    @foreach ($casts as $cast)
+                        <!-- Movie-->
+                        <div class="col-4 col-md-2 px-2 mb-4">
+                            <div class="card product-card card-static" id="custom-card">
+                                <a class=" blog-entry-thumb gallery-item" href="{{ route('dc.detail', $cast->id) }}">
+                                    <img src="{{ !empty($cast->photo) ? url('upload/cast_images/' . $cast->photo) : url('upload/profile.jpg') }}"
+                                        alt="Product">
                                 </a>
-                                <div class="card-body">
-                                    <div class="movie-title" style="font-size: 12px">
-                                        <a href="{{ route('dc.casts.detail', $cast->id) }}"id="h-a">{{ $cast->name }}</a>
+
+                                <a href="{{ route('dc.detail', $cast->id) }}">
+                                    <div class="movie-title font-size-sm" id="mname_{{ $cast->id }}">
+                                        {{ $cast->name }}
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     @endforeach
                 </div>
-
                 <hr class="my-3">
                 <!-- Pagination-->
+
                 <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
                     <ul class="pagination">
                         @if ($casts->onFirstPage())
@@ -68,7 +55,17 @@
                             <span class="page-link page-link-static">{{ $casts->currentPage() }} /
                                 {{ $casts->lastPage() }}</span>
                         </li>
-                        @foreach (range(1, $casts->lastPage()) as $page)
+
+                        @if ($casts->currentPage() > 4)
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $casts->url(1) }}">1</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                        @endif
+
+                        @foreach (range(max($casts->currentPage() - 2, 1), min($casts->currentPage() + 2, $casts->lastPage())) as $page)
                             @if ($page == $casts->currentPage())
                                 <li class="page-item active d-none d-sm-block" aria-current="page">
                                     <span class="page-link">{{ $page }}<span class="sr-only">(current)</span></span>
@@ -79,6 +76,16 @@
                                 </li>
                             @endif
                         @endforeach
+
+                        @if ($casts->currentPage() < $casts->lastPage() - 3)
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="{{ $casts->url($casts->lastPage()) }}">{{ $casts->lastPage() }}</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <ul class="pagination">
@@ -95,6 +102,7 @@
                     </ul>
                 </nav>
             </section>
+
 
             <aside class="col-lg-4">
                 <!-- Sidebar-->

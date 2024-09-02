@@ -74,9 +74,14 @@
                     <div class="tab-pane fade show active" id="details" role="tabpanel">
                         <div class="row">
                             <div class="col-lg-12">
-                                {!! html_entity_decode($serie->description) !!}
+                                <p>
+                                <div id="movie_des">
+                                    {!! html_entity_decode($serie->description) !!}
+                                </div>
+                                </p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 

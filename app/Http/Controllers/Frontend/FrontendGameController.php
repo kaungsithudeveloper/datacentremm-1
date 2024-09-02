@@ -74,9 +74,9 @@ class FrontendGameController extends Controller
     public function GameGenre($id)
     {
         $genre = Genre::find($id);
-        $movies = $genre->games()->where('type', 'game')->where('status', 1)->latest()->paginate(18);
+        $games = $genre->games()->where('type', 'game')->where('status', 1)->latest()->paginate(18);
         $genres = Genre::all();
         $posts = Blog::where('status', 1)->latest()->take(6)->get();
-        return view('frontend.games.game_genres', compact('movies', 'genres', 'posts','genre'));
+        return view('frontend.games.game_genres', compact('games', 'genres', 'posts','genre'));
     }
 }

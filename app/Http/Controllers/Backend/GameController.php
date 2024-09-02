@@ -69,8 +69,19 @@ class GameController extends Controller
             'selling_price' => 'required',
             'discount_price' => 'required',
             'genre_id' => 'nullable|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
+
+        $existingProduct = Product::where('code', $validatedData['code'])->first();
+
+        if ($existingProduct) {
+            $notification = [
+                'message' => 'PC-Games with the given code already exists.',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->withInput()->with($notification);
+        }
 
         if ($request->file('photo')) {
             $image = $request->file('photo');

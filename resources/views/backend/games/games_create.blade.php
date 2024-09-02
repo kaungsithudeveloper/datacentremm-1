@@ -271,7 +271,6 @@
 @push('scripts')
     <!-- tagsinput -->
     <script src="{{ url('backend/plugins/input-tags/js/tagsinput.js') }}"></script>
-    <script src="{{ url('backend/plugins/input-tags/js/bootstrap-tagsinput.min.js') }}"></script>
 
     <!-- typeahead -->
     <script src="{{ asset('backend/plugins/typeahead/typeahead.bundle.js') }}"></script>

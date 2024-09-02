@@ -10,7 +10,11 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-                    <h1 class="page-title">Posts </h1>
+                    <h1 class="page-title">
+                        <a href="{{ route('posts.create') }}" class="btn btn-primary">
+                            Add New Post
+                        </a>
+                    </h1>
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
@@ -308,7 +312,7 @@
                                                                             <td>
                                                                                 <div class="g-2 text-center">
                                                                                     @if (Auth::user()->can('blog.edit'))
-                                                                                        <a href="{{ route('posts.edit', $post->id) }}"
+                                                                                        <a href=""
                                                                                             class="btn text-primary btn-sm"
                                                                                             data-bs-toggle="tooltip"
                                                                                             data-bs-original-title="Edit">
@@ -457,7 +461,7 @@
                                                                             <td>
                                                                                 <div class="g-2 text-center">
                                                                                     @if (Auth::user()->can('blog.edit'))
-                                                                                        <a href="{{ route('posts.edit', $post->id) }}"
+                                                                                        <a href=""
                                                                                             class="btn text-primary btn-sm"
                                                                                             data-bs-toggle="tooltip"
                                                                                             data-bs-original-title="Edit">

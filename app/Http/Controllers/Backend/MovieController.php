@@ -79,6 +79,17 @@ class MovieController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        $existingProduct = Product::where('code', $validatedData['code'])->first();
+
+        if ($existingProduct) {
+            $notification = [
+                'message' => 'Movies with the given code already exists.',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->withInput()->with($notification);
+        }
+
         if ($request->file('photo')) {
             $image = $request->file('photo');
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
